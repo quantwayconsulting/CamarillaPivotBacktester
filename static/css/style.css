@@ -1,0 +1,233 @@
+/* --- THEME COLOR PALETTES --- */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --card-border: #dee2e6;
+  --navbar-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-focus-border: #86b7fe;
+  --input-focus-shadow: rgba(13, 110, 253, .25);
+  --table-border: #dee2e6;
+  --table-stripe-bg: rgba(0, 0, 0, 0.05);
+  --shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  --shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+
+body.theme-dark {
+  --primary-color: #4ea1ff;               /* bright electric blue */
+  --secondary-color: #bbbbbb;             /* lighter soft gray for contrast */
+  --success-color: #5ddf95;               /* fresh minty green */
+  --danger-color: #ff6b81;                /* vibrant coral red */
+  --bg-color: #1e1e2f;                    /* soft, deep blue-black */
+  --text-color: #e5e5e5;                  /* light neutral text */
+  --card-bg: #2a2c44;                     /* slightly lighter than bg for subtle layering */
+  --card-border: #565f7b;                 /* softened indigo border with shimmer feel */
+  --navbar-bg: #202233;                   /* same deep blue-black */
+  --input-bg: #323659;                    /* richer blue-gray */
+  --input-border: #565f7b;                /* matching card border */
+  --input-focus-border: #4ea1ff;          /* strong blue for focus */
+  --input-focus-shadow: rgba(78, 161, 255, 0.45);  /* stronger glow */
+  --table-border: #565f7b;                /* indigo border */
+  --table-stripe-bg: rgba(255, 255, 255, 0.07); /* subtle shimmer stripe */
+}
+
+/* Text and tables for max readability */
+body.theme-dark table,
+body.theme-dark .table {
+  color: #f0f0f0;                        /* bright text */
+  border-color: #606a8a;                 /* slightly lighter blue-indigo border */
+}
+
+body.theme-dark .table thead th {
+  background-color: #353a5e;             /* deeper indigo for clear header */
+  color: #ffffff;                        /* bright white */
+}
+
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(255, 255, 255, 0.07) !important; /* brighter stripe */
+}
+
+body.theme-dark .table-hover > tbody > tr:hover > * {
+  background-color: rgba(78, 161, 255, 0.12) !important; /* subtle electric blue shimmer on hover */
+}
+
+/* Inputs & buttons subtle glowing effect */
+body.theme-dark input:focus,
+body.theme-dark textarea:focus,
+body.theme-dark select:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 8px var(--input-focus-shadow);
+  outline: none;
+}
+
+/* Cards with shimmer effect */
+body.theme-dark .card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 2px 6px rgba(78, 161, 255, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+body.theme-dark .card:hover {
+  box-shadow: 0 4px 12px rgba(78, 161, 255, 0.3);
+}
+
+/* Navbar highlight shimmer */
+body.theme-dark .navbar {
+  background-color: var(--navbar-bg);
+  box-shadow: 0 2px 8px rgba(78, 161, 255, 0.2);
+  border-bottom: 1px solid var(--input-border);
+}
+
+
+
+body.theme-tokyo {
+  --primary-color: #7aa2f7;
+  --secondary-color: #737c9a;
+  --success-color: #9ece6a;
+  --danger-color: #f7768e;
+  --bg-color: #1a1b26;
+  --text-color: #c0caf5;
+  --card-bg: #24283b;
+  --card-border: #414868;
+  --navbar-bg: #24283b;
+  --input-bg: #2f334d;
+  --input-border: #414868;
+  --input-focus-border: #7aa2f7;
+  --input-focus-shadow: rgba(122, 162, 247, 0.25);
+  --table-border: #414868;
+  --table-stripe-bg: #292e42;
+}
+
+/* --- GENERAL STYLES --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.shadow { box-shadow: var(--shadow) !important; }
+
+/* --- NAVBAR --- */
+.navbar-custom {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: var(--text-color);
+}
+.navbar-custom .nav-link.active,
+.navbar-custom .nav-link:hover {
+  color: var(--primary-color);
+}
+.navbar-toggler {
+  border-color: var(--card-border);
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28192, 202, 245, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- CARDS --- */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-color);
+}
+.card-title { color: var(--text-color); }
+.card-body { color: var(--text-color); }
+
+/* --- FORMS & INPUTS --- */
+.form-control, .form-select {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
+}
+.form-control:focus, .form-select:focus {
+  color: var(--text-color);
+  background-color: var(--input-bg);
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 0.25rem var(--input-focus-shadow);
+}
+.form-control::placeholder { color: var(--secondary-color); }
+label { color: var(--text-color); }
+
+/* --- BUTTONS --- */
+.btn-primary-custom, .btn-outline-primary-custom:hover { background-color: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.btn-success-custom, .btn-outline-success-custom:hover { background-color: var(--success-color); border-color: var(--success-color); color: #fff; }
+.btn-danger-custom, .btn-outline-danger-custom:hover { background-color: var(--danger-color); border-color: var(--danger-color); color: #fff; }
+.btn-outline-primary-custom { color: var(--primary-color); border-color: var(--primary-color); }
+.btn-outline-success-custom { color: var(--success-color); border-color: var(--success-color); }
+.btn-outline-danger-custom { color: var(--danger-color); border-color: var(--danger-color); }
+.btn:focus { box-shadow: 0 0 0 0.25rem var(--input-focus-shadow); }
+
+/* --- TABLES --- */
+.table {
+  color: var(--text-color);
+  border-color: var(--table-border);
+}
+.table > :not(caption) > * > * {
+  background-color: transparent;
+}
+.table-hover > tbody > tr:hover > * {
+  color: var(--text-color);
+  background-color: var(--table-stripe-bg);
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: var(--table-stripe-bg);
+}
+
+/* --- ALERTS --- */
+.alert { white-space: pre-wrap; }
+
+/* --- MODALS --- */
+.modal-content {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+.modal-header, .modal-footer {
+  border-color: var(--card-border);
+}
+.btn-close {
+  filter: var(--bg-color) > #999 ? invert(1) : none;
+}
+
+/* --- BADGES --- */
+.bg-primary-custom { background-color: var(--primary-color) !important; }
+.bg-success-custom { background-color: var(--success-color) !important; }
+
+/* --- THEME SWITCHER --- */
+.theme-switcher { display: flex; align-items: center; gap: 8px; }
+.theme-toggle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--card-border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle.active { border-color: var(--primary-color); transform: scale(1.2); }
+.theme-toggle[data-theme="light"] { background-color: #f8f9fa; }
+.theme-toggle[data-theme="dark"] { background-color: #161b22; }
+.theme-toggle[data-theme="tokyo"] { background-color: #1a1b26; }
+
+body.theme-dark .table td,
+body.theme-dark .table th,
+body.theme-tokyo .table td,
+body.theme-tokyo .table th {
+  color: inherit !important;
+}

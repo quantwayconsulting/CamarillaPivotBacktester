@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block title %}User Guide{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 900px;">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h1 class="card-title mb-0">Camarilla Backtester User Guide</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead">A powerful web-based tool for backtesting trading strategies based on Camarilla pivot points, developed by Quantway Consulting LLP.</p>
+
+            <h2 class="mt-5 border-bottom pb-2">Features</h2>
+            <ul>
+                <li><strong>Advanced Pattern Definition:</strong> Define intricate, multi-month patterns (e.g., "Find all instances where the market touched R4 last month and then touched S3 this month").</li>
+                <li><strong>Single Ticker Analysis:</strong> Run a detailed backtest on a single stock to see historical occurrences and subsequent market behavior.</li>
+                <li><strong>Market-Wide Analysis (Camarilla Mind):</strong> Scan an entire universe of stocks for your defined pattern to find high-probability setups across the market.</li>
+                <li><strong>Detailed Outcome Probabilities:</strong> Results are broken down into overall probabilities, singular vs. path outcomes, and powerful conditional probabilities based on the starting price zone.</li>
+                <li><strong>Interactive Visualizations:</strong> Clear bar charts provide an intuitive view of all outcome probabilities.</li>
+                <li><strong>Full History Tracking:</strong> All backtests are saved and can be reviewed, shared, or re-loaded from the History page.</li>
+                <li><strong>Professional PDF Reports:</strong> Export any backtest result into a clean, professional PDF document.</li>
+                <li><strong>Customizable Themes:</strong> Switch between Light, Bloomberg Dark, and Tokyo Night UI themes.</li>
+            </ul>
+
+            <h2 class="mt-5 border-bottom pb-2">How to Use the Backtester</h2>
+
+            <h4 class="mt-4">1. Define Your Pattern</h4>
+            <p>The core of the tool is the <strong>Pattern Definition</strong> box. The syntax is designed to be intuitive and powerful.</p>
+            
+            <h6>Structure:</h6>
+            <pre class="bg-light p-3 rounded" style="background-color: var(--input-bg) !important; border: 1px solid var(--card-border);"><code>Month [offset]: [Condition] and [Condition]; Month [offset]: [Condition]</code></pre>
+            
+            <h6>Month Offset:</h6>
+            <ul>
+                <li><code>Month 0</code> refers to the most recent month that completes the pattern's premise.</li>
+                <li><code>Month -1</code> is the month before <code>Month 0</code>.</li>
+                <li><code>Month -2</code> is the month before that, and so on.</li>
+                <li>The month <em>after</em> the highest offset month (e.g., after Month 0) is the "outcome month" that the tool analyzes.</li>
+            </ul>
+
+            <h6>Condition Syntax:</h6>
+            <pre class="bg-light p-3 rounded" style="background-color: var(--input-bg) !important; border: 1px solid var(--card-border);"><code>[Price Point] [Operator] [Pivot Level]</code></pre>
+            <ul>
+                <li><strong>Price Point:</strong> <code>High</code> or <code>Low</code></li>
+                <li><strong>Operator:</strong> <code>touched</code>, <code>above</code>, or <code>below</code></li>
+                <li><strong>Pivot Level:</strong> <code>R1</code> to <code>R5</code>, <code>S1</code> to <code>S5</code>, or <code>P</code> (Pivot Point)</li>
+            </ul>
+
+            <div class="alert alert-info mt-3">
+                <strong>Example Pattern:</strong>
+                <pre class="mb-0 mt-2"><code>Month -1: High touched R4; Month 0: Low below S3</code></pre>
+                <p class="mb-0 mt-2">This pattern searches for all instances where a stock's monthly high touched the R4 pivot in one month, and in the <em>following</em> month, its low went below the S3 pivot. The tool will then analyze the price action of the month <em>after that</em>.</p>
+            </div>
+
+            <h4 class="mt-4">2. Set Parameters</h4>
+            <ul>
+                <li><strong>Test Name:</strong> Give your backtest a descriptive name.</li>
+                <li><strong>Date Range:</strong> Select the start and end dates for the historical data to be analyzed.</li>
+                <li><strong>Notes:</strong> Add any observations or hypotheses for this test.</li>
+            </ul>
+
+            <h4 class="mt-4">3. Run the Analysis</h4>
+            <ul>
+                <li><strong>Single Ticker Analysis:</strong> Select a Ticker Symbol and click <strong>Run Single Backtest</strong>.</li>
+                <li><strong>Market-Wide Analysis:</strong> Select a Stock Universe and click <strong>Run Camarilla Mind</strong>.</li>
+            </ul>
+
+            <h4 class="mt-4">4. Interpret the Results</h4>
+            <ul>
+                <li><strong>Aggregate Probabilities Chart:</strong> The main chart shows the probability of all outcomes based on the filter you select (All, Singular, Path).</li>
+                <li><strong>Probabilities by Starting Zone:</strong> This powerful feature shows you conditional probabilities. Select a starting zone from the dropdown to see a chart of where the market was most likely to end, given that specific start point.</li>
+                <li><strong>Historical Matches Table:</strong> For single-ticker tests, a table shows every date the pattern occurred and the resulting outcome.</li>
+                <li><strong>Actions:</strong> Use the buttons in the top-right of the results card to download a <strong>PDF report</strong> or export the test parameters and results as a <code>.qwc</code> file (which can be re-imported later).</li>
+            </ul>
+
+            <h2 class="mt-5 border-bottom pb-2">Data Setup Guide</h2>
+            <p>The backtester relies on historical price data in CSV format. For the tool to work correctly, please follow these guidelines.</p>
+            
+            <h6>CSV File Location:</h6>
+            <p>Place all your <code>.csv</code> data files inside the <code>/data</code> directory, which is in the same folder as the main <code>app.py</code> file.</p>
+            
+            <h6>CSV File Naming:</h6>
+            <p>Each file must be named after the ticker symbol it represents. For example, data for Reliance Industries should be in a file named <code>RELIANCE.csv</code>.</p>
+            
+            <h6>Required CSV Columns:</h6>
+            <p>The CSV files must contain at least the following columns. The column names are case-insensitive.</p>
+            <ul>
+                <li><code>datetime</code></li>
+                <li><code>open</code></li>
+                <li><code>high</code></li>
+                <li><code>low</code></li>
+                <li><code>close</code></li>
+            </ul>
+
+            <h4 class="mt-4">Stock Universe Setup (Optional)</h4>
+            <p>To use the "Market-Wide Analysis" with predefined universes (like "Nifty 50"), you need to configure the <code>StockList.csv</code> file located in the root directory.</p>
+            <ul>
+                <li>This file must have at least two columns: <code>Symbol</code> and <code>Type</code>.</li>
+                <li>The value in the <code>Symbol</code> column must exactly match the name of the corresponding data file in the <code>/data</code> directory (e.g., "RELIANCE", not "RELIANCE.csv").</li>
+                <li>The value in the <code>Type</code> column is used to group stocks. All stocks with the same "Type" will appear together in that universe dropdown. For example, all stocks with "Nifty 50" as their type will be included when you run an analysis on the "Nifty 50" universe.</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
